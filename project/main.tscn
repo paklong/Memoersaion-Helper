@@ -1,0 +1,141 @@
+[gd_scene load_steps=12 format=3 uid="uid://c5p2u3nk1vkm"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_m2777"]
+[ext_resource type="PackedScene" uid="uid://c8ngrvlak68d0" path="res://http_request.tscn" id="2_0f2vb"]
+[ext_resource type="PackedScene" uid="uid://doraq7kht32uf" path="res://parallax_background.tscn" id="2_sbvie"]
+[ext_resource type="AudioStream" uid="uid://cvjkhsk18binf" path="res://Music/Stream Loops 2023-11-29.ogg" id="4_njrpo"]
+[ext_resource type="Script" path="res://BackgroundMusic.gd" id="5_ugcsn"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_ev71p"]
+action = &"next_item"
+
+[sub_resource type="Shortcut" id="Shortcut_m7fe0"]
+events = [SubResource("InputEventAction_ev71p")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_dg4u1"]
+action = &"previous_item"
+
+[sub_resource type="Shortcut" id="Shortcut_4qe3a"]
+events = [SubResource("InputEventAction_dg4u1")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_v6hmb"]
+action = &"show_hint"
+
+[sub_resource type="Shortcut" id="Shortcut_lg3hs"]
+events = [SubResource("InputEventAction_v6hmb")]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m2777")
+
+[node name="Background" parent="." instance=ExtResource("2_sbvie")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 210.0
+offset_top = 207.0
+offset_right = -403.0
+offset_bottom = -217.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.361575, 0.361576, 0.361575, 0.596078)
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "[wave]Loading data, please wait [/wave]"
+
+[node name="NextButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -85.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+shortcut = SubResource("Shortcut_m7fe0")
+text = "Next"
+
+[node name="PreviousButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -331.0
+offset_top = -86.0
+offset_right = -197.0
+offset_bottom = -17.0
+grow_horizontal = 0
+grow_vertical = 0
+shortcut = SubResource("Shortcut_4qe3a")
+text = "Previous"
+
+[node name="ShowHintsButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -331.0
+offset_top = -182.0
+offset_right = -197.0
+offset_bottom = -113.0
+grow_horizontal = 0
+grow_vertical = 0
+shortcut = SubResource("Shortcut_lg3hs")
+text = "Hint"
+
+[node name="ShowAnswerButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -151.0
+offset_top = -182.0
+offset_right = -17.0
+offset_bottom = -113.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Answer"
+
+[node name="GoogleDriveFile" parent="." instance=ExtResource("2_0f2vb")]
+unique_name_in_owner = true
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_njrpo")
+script = ExtResource("5_ugcsn")

@@ -1,0 +1,173 @@
+[gd_scene load_steps=20 format=3 uid="uid://doraq7kht32uf"]
+
+[ext_resource type="Texture2D" uid="uid://b1jhv64gygjq4" path="res://Twiligh_Beach/beach1.png" id="1_6iqqh"]
+[ext_resource type="Texture2D" uid="uid://dukdt8hy3vudi" path="res://Twiligh_Beach/sky7.png" id="1_8oe0v"]
+[ext_resource type="Texture2D" uid="uid://bmky8e5c3gcdc" path="res://Twiligh_Beach/beach2.png" id="2_a78bx"]
+[ext_resource type="Texture2D" uid="uid://dqlpquevbw76h" path="res://Twiligh_Beach/sun.png" id="2_yxwpr"]
+[ext_resource type="Texture2D" uid="uid://b23gckh1xshgx" path="res://Twiligh_Beach/clouds.png" id="3_44aae"]
+[ext_resource type="Texture2D" uid="uid://c1hyf155vejib" path="res://Twiligh_Beach/beach3.png" id="3_j4xmh"]
+[ext_resource type="Texture2D" uid="uid://d1e3y2vo8glqp" path="res://Twiligh_Beach/sea1.png" id="4_0admp"]
+[ext_resource type="Texture2D" uid="uid://d2ehe6pfkdqy0" path="res://Twiligh_Beach/beach4.png" id="4_vs5ow"]
+[ext_resource type="Texture2D" uid="uid://dj236c27aa2ul" path="res://Twiligh_Beach/sea2.png" id="5_i1ate"]
+[ext_resource type="Texture2D" uid="uid://10rfcu4330b1" path="res://Twiligh_Beach/sea3.png" id="6_b3q2x"]
+[ext_resource type="Texture2D" uid="uid://b2rbbkariet2i" path="res://Twiligh_Beach/sea4.png" id="7_6dxrb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6u0qu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_0admp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_i1ate")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_b3q2x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_6dxrb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d7hqk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6iqqh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_a78bx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_j4xmh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vs5ow")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_6di7x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7u3fg"]
+resource_name = "Sun"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lfss4"]
+_data = {
+"RESET": SubResource("Animation_6di7x"),
+"Sun": SubResource("Animation_7u3fg")
+}
+
+[sub_resource type="Animation" id="Animation_y8in4"]
+resource_name = "Clound"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Clound:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 24), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ftbyv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Clound:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 24)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sy5us"]
+_data = {
+"Clound": SubResource("Animation_y8in4"),
+"RESET": SubResource("Animation_ftbyv")
+}
+
+[node name="Background" type="Node2D"]
+
+[node name="Sky" type="Sprite2D" parent="."]
+scale = Vector2(3.6, 3.6)
+texture = ExtResource("1_8oe0v")
+centered = false
+
+[node name="Sun" type="Sprite2D" parent="."]
+scale = Vector2(3.6, 3.6)
+texture = ExtResource("2_yxwpr")
+centered = false
+
+[node name="Clound" type="Sprite2D" parent="."]
+position = Vector2(0, 24)
+scale = Vector2(3.6, 3.6)
+texture = ExtResource("3_44aae")
+centered = false
+
+[node name="Sea" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3.6, 3.6)
+sprite_frames = SubResource("SpriteFrames_6u0qu")
+autoplay = "default"
+frame_progress = 0.4829
+centered = false
+
+[node name="Beach" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3.6, 3.6)
+sprite_frames = SubResource("SpriteFrames_d7hqk")
+autoplay = "default"
+frame_progress = 0.344357
+centered = false
+
+[node name="SunAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lfss4")
+}
+autoplay = "Sun"
+speed_scale = 0.1
+
+[node name="CloundAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sy5us")
+}
+autoplay = "Clound"
+speed_scale = 0.25
