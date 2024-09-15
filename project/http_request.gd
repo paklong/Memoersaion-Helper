@@ -6,7 +6,8 @@ signal request_array_populated
 
 const FILE_ID := "1ZdMYf96RKyex2dvO_KZ5rimkiJeNpjAO"
 const API_KEY := "AIzaSyCDpkwBgtch43YsY7RNqqq1OQt8GAx3f-8"
-var request := "https://www.googleapis.com/drive/v3/files/%s?key=%s&alt=media" % [FILE_ID, API_KEY]
+#var request := "https://www.googleapis.com/drive/v3/files/%s?key=%s&alt=media" % [FILE_ID, API_KEY]
+var request := "https://cors-anywhere.herokuapp.com/https://www.googleapis.com/drive/v3/files/%s?key=%s&alt=media" % [FILE_ID, API_KEY]
 
 var my_array := []
 
